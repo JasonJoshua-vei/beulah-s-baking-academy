@@ -1,0 +1,100 @@
+{
+  "bakingCourses": [
+    {
+      "id": "brownie-workshop",
+      "title": "Brownie Workshop",
+      "duration": "1 Day",
+      "tag": "Popular",
+      "shortDesc": "Learn to bake fudgy, chocolate-loaded brownies",
+      "category": "baking"
+    },
+    {
+      "id": "cupcake-workshop",
+      "title": "Cupcake Workshop",
+      "duration": "1 Day",
+      "tag": "Beginner",
+      "shortDesc": "Master soft, creamy, custom-flavored cupcakes",
+      "category": "baking"
+    },
+    {
+      "id": "tea-cake-workshop",
+      "title": "Tea Cake Workshop",
+      "duration": "1 Day",
+      "tag": "New",
+      "shortDesc": "Perfect tea-time cakes and butter cakes",
+      "category": "baking"
+    },
+    {
+      "id": "plum-cake-workshop",
+      "title": "Plum Cake Workshop",
+      "duration": "1 Day",
+      "tag": "Seasonal",
+      "shortDesc": "Rich, fruity plum cakes for celebrations",
+      "category": "baking"
+    },
+    {
+      "id": "cake-master-class",
+      "title": "Cake Master Class",
+      "duration": "2 Days",
+      "tag": "Advanced",
+      "shortDesc": "Comprehensive cake decoration & techniques",
+      "category": "baking"
+    },
+    {
+      "id": "cookies-workshop",
+      "title": "Cookies Workshop",
+      "duration": "1 Day",
+      "tag": "Fun",
+      "shortDesc": "Crispy, buttery cookies with variations",
+      "category": "baking"
+    }
+  ],
+  "otherCourses": [
+    {
+      "id": "cursive-writing",
+      "title": "Cursive Handwriting",
+      "duration": "7 Days",
+      "tag": "Art",
+      "shortDesc": "Beautiful handwriting with personalized feedback",
+      "category": "art"
+    },
+    {
+      "id": "spoken-english",
+      "title": "Spoken English",
+      "duration": "1 Month",
+      "tag": "Language",
+      "shortDesc": "Build confidence in English communication",
+      "category": "language"
+    }
+  ],
+  "products": [
+    {
+      "id": "yummy-brownies",
+      "title": "Yummy Brownies",
+      "price": "₹350",
+      "shortDesc": "Thick, fudgy, chocolate-loaded",
+      "image": "brownies"
+    },
+    {
+      "id": "mouthwatering-cakes",
+      "title": "Mouthwatering Cakes",
+      "price": "₹650",
+      "shortDesc": "Moist, flavorful, beautifully decorated — our homemade cakes",
+      "image": "cakes"
+    },
+    {
+      "id": "delicious-cupcakes",
+      "title": "Delicious Cupcakes",
+      "price": "₹450",
+      "shortDesc": "Soft, creamy, custom flavors & themes",
+      "image": "cupcakes"
+    },
+    {
+      "id": "yummy-blondies",
+      "title": "Yummy Blondies",
+      "price": "₹380",
+      "shortDesc": "Buttery, golden, caramel-kissed",
+      "image": "blondies"
+    }
+  ]
+}
