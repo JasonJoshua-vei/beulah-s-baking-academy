@@ -47,6 +47,17 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        cream: {
+          50: "hsl(var(--cream-50))",
+          100: "hsl(var(--cream-100))",
+          300: "hsl(var(--cream-300))",
+        },
+        chocolate: {
+          DEFAULT: "hsl(var(--chocolate))",
+          dark: "hsl(var(--chocolate-dark))",
+        },
+        taupe: "hsl(var(--taupe))",
+        ink: "hsl(var(--ink))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
