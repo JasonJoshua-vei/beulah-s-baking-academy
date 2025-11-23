@@ -1,19 +1,34 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "@/components/NavLink";
-import { Menu, X, Instagram } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
+import ButtonInstagram from "@/components/ui/ButtonInstagram";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close menu + scroll to top when route changes (ensures new page starts at top)
+  useEffect(() => {
+    setIsOpen(false);
+    // use smooth for nicer UX but change to instant if you prefer
+    try {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
 
   const links = [
     { to: "/", label: "HOME" },
@@ -32,7 +47,12 @@ export const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <NavLink to="/" className="text-2xl md:text-3xl font-bold text-chocolate">
+          {/* Logo: use Bogart bold */}
+          <NavLink
+            to="/"
+            className="text-2xl md:text-3xl font-bold text-chocolate font-bogart"
+            aria-label="Beulah home"
+          >
             Beulah
           </NavLink>
 
@@ -42,21 +62,24 @@ export const Header = () => {
               <NavLink
                 key={link.to}
                 to={link.to}
-                className="text-sm font-medium text-foreground/80 hover:text-chocolate transition-colors relative group"
+                className="text-sm font-medium text-foreground/80 hover:text-chocolate transition-colors relative group font-coco-normal tracking-widest"
                 activeClassName="text-chocolate"
               >
+                {/* all-caps nav text uses Coco Gothic normal */}
                 {link.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-chocolate transition-all duration-300 group-hover:w-full" />
               </NavLink>
             ))}
+
+            {/* Instagram: use ButtonInstagram wrapped with anchor so it behaves like a link */}
             <a
               href="https://www.instagram.com/beulah_james2024/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground/80 hover:text-chocolate transition-colors"
               aria-label="Instagram"
+              className="inline-block"
             >
-              <Instagram className="w-5 h-5" />
+              <ButtonInstagram />
             </a>
           </nav>
 
@@ -77,7 +100,7 @@ export const Header = () => {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.28 }}
               className="md:hidden overflow-hidden"
             >
               <div className="flex flex-col gap-4 pt-6 pb-4">
@@ -85,21 +108,25 @@ export const Header = () => {
                   <NavLink
                     key={link.to}
                     to={link.to}
-                    onClick={() => setIsOpen(false)}
-                    className="text-base font-medium text-foreground/80 hover:text-chocolate transition-colors"
+                    onClick={() => {
+                      setIsOpen(false);
+                      // navigate handled by NavLink; scroll-to-top handled by location effect
+                    }}
+                    className="text-base font-medium text-foreground/80 hover:text-chocolate transition-colors font-coco-normal tracking-widest"
                     activeClassName="text-chocolate"
                   >
                     {link.label}
                   </NavLink>
                 ))}
+
                 <a
                   href="https://www.instagram.com/beulah_james2024/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-foreground/80 hover:text-chocolate transition-colors"
                 >
-                  <Instagram className="w-5 h-5" />
-                  <span>Instagram</span>
+                  <ButtonInstagram />
+                  <span className="font-coco-normal">Instagram</span>
                 </a>
               </div>
             </motion.nav>
@@ -109,3 +136,5 @@ export const Header = () => {
     </motion.header>
   );
 };
+
+export default Header;
