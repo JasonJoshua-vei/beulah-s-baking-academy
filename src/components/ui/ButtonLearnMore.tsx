@@ -1,27 +1,26 @@
 // src/components/ui/ButtonLearnMore.tsx
 import React from "react";
 
-export const ButtonLearnMore: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ children = "Learn more", ...rest }) => {
+export const ButtonLearnMore: React.FC<
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({ children = "Learn more", className = "", ...rest }) => {
   return (
-    <button {...rest} className="learnMoreBtn">
+    <button
+      {...rest}
+      className={`
+        bg-transparent 
+        text-[#3e2d27]
+        border border-[rgba(62,45,39,0.15)]
+        px-[22px] py-[10px]
+        rounded-none
+        shadow-[0_6px_18px_rgba(238,217,204,0.18)]
+        transition-all duration-200
+        hover:-translate-y-1
+        hover:shadow-[0_18px_40px_rgba(241,224,209,0.36),0_6px_14px_rgba(0,0,0,0.06)]
+        ${className}
+      `}
+    >
       {children}
-      <style jsx>{`
-        .learnMoreBtn{
-          background: transparent;
-          color: #3e2d27;
-          border: 1px solid rgba(62,45,39,0.15);
-          padding: 10px 22px;
-          border-radius: 0; /* sharp corners */
-          box-shadow: 0 6px 18px rgba(238,217,204,0.18);
-          transition: transform .16s ease, box-shadow .16s ease;
-        }
-        .learnMoreBtn:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 18px 40px rgba(241,224,209,0.36), 0 6px 14px rgba(0,0,0,0.06);
-          /* subtle cream glow */
-          box-shadow: 0 18px 40px rgba(241,224,209,0.36), 0 6px 14px rgba(0,0,0,0.06), 0 0 24px rgba(241,224,209,0.18);
-        }
-      `}</style>
     </button>
   );
 };

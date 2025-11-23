@@ -22,6 +22,9 @@ const StyledWrapper = styled.div`
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     transition: transform .14s ease, box-shadow .14s ease;
   }
-  .formBtn:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 10px 26px rgba(0,0,0,0.12); }
+  .formBtn:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+  }
 `;
 export default ButtonForm;
