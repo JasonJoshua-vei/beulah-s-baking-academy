@@ -9,7 +9,6 @@ import heroCupcake from "@/assets/hero-cupcake.png";
 /**
  * Hero.tsx
  *
- * - fixes: removed duplicate animate props (brownies)
  * - brownies: draggable with snap-back (spring) onRelease
  * - cupcakes: click to spawn multiple flying cupcake clones ("fountain")
  * - sparkles: larger, multiple per spawn point, float idle, flee when cursor is near
@@ -65,7 +64,7 @@ export const Hero: React.FC = () => {
   };
 
   // ----- Sparkles: multiple, bigger, flee when cursor near -----
-  // Define static sparkle anchor positions relative to the container (percent)
+  // Anchor positions as % of the container
   const sparkleAnchors = [
     { leftPct: 0.08, topPct: 0.12 },
     { leftPct: 0.72, topPct: 0.18 },
@@ -75,7 +74,6 @@ export const Hero: React.FC = () => {
 
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
 
-  // On mount, populate sparkles (multiple each anchor)
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -84,13 +82,13 @@ export const Hero: React.FC = () => {
     const created: Sparkle[] = [];
 
     sparkleAnchors.forEach((anchor, ai) => {
-      // spawn 3 sparkles per anchor, slight offsets
+      // 3 sparkles per anchor with jitter
       for (let i = 0; i < 3; i++) {
         const jitterX = (Math.random() - 0.5) * 40;
         const jitterY = (Math.random() - 0.5) * 40;
         const baseX = rect.left + rect.width * anchor.leftPct + jitterX + window.scrollX;
         const baseY = rect.top + rect.height * anchor.topPct + jitterY + window.scrollY;
-        const size = 0.9 + Math.random() * 0.9; // scale 0.9 - 1.8
+        const size = 0.9 + Math.random() * 0.9; // 0.9 - 1.8
         created.push({ id: uniqueId(`spark_${ai}_${i}`), baseX, baseY, size, flee: false });
       }
     });
@@ -99,24 +97,22 @@ export const Hero: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Proximity detection: when cursor near sparkle, set flee true and set dx/dy
+  // Proximity detection for flee behavior
   useEffect(() => {
-    if (!cursor) return;
-    if (!sparkles.length) return;
+    if (!cursor || !sparkles.length) return;
 
-    const THRESHOLD = 90; // px radius to trigger flee
+    const THRESHOLD = 90; // px
     const updated = sparkles.map((s) => {
-      if (s.flee) return s; // already fleeing
+      if (s.flee) return s;
       const dx = (s.baseX ?? 0) - cursor.x;
       const dy = (s.baseY ?? 0) - cursor.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
       if (dist < THRESHOLD) {
-        // trigger flee: compute a flee vector away from cursor with some randomness
         const angle = Math.atan2(s.baseY - cursor.y, s.baseX - cursor.x) + (Math.random() - 0.5) * 0.8;
         const fleeDistance = 120 + Math.random() * 140;
         const fx = Math.cos(angle) * fleeDistance;
-        const fy = Math.sin(angle) * fleeDistance - (40 + Math.random() * 80); // lift upwards slightly
-        // schedule return after a bit
+        const fy = Math.sin(angle) * fleeDistance - (40 + Math.random() * 80); // lift
+        // return to idle after a short random period
         setTimeout(() => {
           setSparkles((prev) =>
             prev.map((p) => (p.id === s.id ? { ...p, flee: false, dx: undefined, dy: undefined } : p))
@@ -127,33 +123,22 @@ export const Hero: React.FC = () => {
       return s;
     });
 
-    // only update if changed
     setSparkles((prev) => {
-      // detect any new flees
       const changed = updated.some((u, i) => u.flee !== prev[i]?.flee || u.dx !== prev[i]?.dx || u.dy !== prev[i]?.dy);
       return changed ? updated : prev;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursor]);
 
-  // Idle float animation variants for sparkles
-  const sparkleIdle = {
-    y: [0, -12, 0],
-    opacity: [0.5, 1, 0.5],
-    transition: { duration: 4 + Math.random() * 2, repeat: Infinity, ease: "easeInOut" },
-  };
-
   // ----- Brownies: drag + snap-back -----
   const browniesControls = useAnimation();
 
   useEffect(() => {
-    // initialize visible state (we use controls instead of inline animate prop to avoid duplicates)
     browniesControls.start({ opacity: 1, scale: 1, transition: { duration: 0.9, ease: "easeOut" } });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onBrownieDragEnd = async (_: any, info: any) => {
-    // spring back to origin
     await browniesControls.start({
       x: 0,
       y: 0,
@@ -243,7 +228,7 @@ export const Hero: React.FC = () => {
     onCupcakeClick(e);
   };
 
-  // Keep body overflow visible while fireworks are active (prevent clipping)
+  // Keep body overflow visible while fireworks are active
   useEffect(() => {
     if (!flying.length) return;
     const original = document.body.style.overflow;
@@ -276,9 +261,8 @@ export const Hero: React.FC = () => {
         />
       </motion.div>
 
-      {/* Sparkles: larger & multiple, float idle, flee when close */}
+      {/* Sparkles */}
       {sparkles.map((s, idx) => {
-        // if fleeing, animate to dx/dy offsets, else idle float
         const left = s.baseX;
         const top = s.baseY;
         return (
@@ -370,7 +354,7 @@ export const Hero: React.FC = () => {
 
           {/* RIGHT CONTENT */}
           <motion.div style={{ rotateX, rotateY }} className="relative flex items-center justify-center" aria-hidden>
-            {/* Brownies — draggable with controls (no duplicate animate props) */}
+            {/* Brownies — draggable */}
             <motion.div
               animate={browniesControls}
               drag={true}
@@ -388,7 +372,7 @@ export const Hero: React.FC = () => {
                 alt="Delicious chocolate brownies"
                 className="w-64 md:w-80 lg:w-96 object-contain drop-shadow-2xl select-none"
                 draggable={false}
-                animate={{ y: [0, -14, 0] }} // float on the img itself (fine to animate child)
+                animate={{ y: [0, -14, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               />
             </motion.div>
