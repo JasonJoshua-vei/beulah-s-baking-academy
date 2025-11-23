@@ -56,6 +56,7 @@ export const Footer = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Beulah Skill Training Academy</h3>
               <p className="text-cream-100 text-sm leading-relaxed mb-4">
+<<<<<<< HEAD
                 LEARN. BAKE. DELIGHT.
                 <br />
                 AFFORDABLE ONLINE
@@ -69,6 +70,9 @@ export const Footer = () => {
                 REGISTERED
                 <br />
                 CERTIFICATES
+=======
+                Learn. Bake. Delight. Affordable online baking & art classes with government-registered certificates.
+>>>>>>> f9960b1 (Hero section changes applied, homepage animation applied)
               </p>
             </div>
 

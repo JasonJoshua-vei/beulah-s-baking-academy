@@ -73,28 +73,44 @@
       "title": "Yummy Brownies",
       "price": "₹350",
       "shortDesc": "Thick, fudgy, chocolate-loaded",
+<<<<<<< HEAD
       "image": "brownies"
+=======
+      "image": "yummy brownies"
+>>>>>>> f9960b1 (Hero section changes applied, homepage animation applied)
     },
     {
       "id": "mouthwatering-cakes",
       "title": "Mouthwatering Cakes",
       "price": "₹650",
       "shortDesc": "Moist, flavorful, beautifully decorated — our homemade cakes",
+<<<<<<< HEAD
       "image": "cakes"
+=======
+      "image": "mouthwatering-cakes"
+>>>>>>> f9960b1 (Hero section changes applied, homepage animation applied)
     },
     {
       "id": "delicious-cupcakes",
       "title": "Delicious Cupcakes",
       "price": "₹450",
       "shortDesc": "Soft, creamy, custom flavors & themes",
+<<<<<<< HEAD
       "image": "cupcakes"
+=======
+      "image": "Delicious cupcakes"
+>>>>>>> f9960b1 (Hero section changes applied, homepage animation applied)
     },
     {
       "id": "yummy-blondies",
       "title": "Yummy Blondies",
       "price": "₹380",
       "shortDesc": "Buttery, golden, caramel-kissed",
+<<<<<<< HEAD
       "image": "blondies"
+=======
+      "image": "yummy blondies"
+>>>>>>> f9960b1 (Hero section changes applied, homepage animation applied)
     }
   ]
 }
