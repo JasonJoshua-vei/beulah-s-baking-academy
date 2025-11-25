@@ -1,3 +1,4 @@
+// src/components/Header.tsx
 import { useState, useEffect } from "react";
 import { NavLink } from "@/components/NavLink";
 import { Menu, X } from "lucide-react";
@@ -22,7 +23,7 @@ export const Header = () => {
   // Close menu + scroll to top when route changes (ensures new page starts at top)
   useEffect(() => {
     setIsOpen(false);
-    // use smooth for nicer UX but change to instant if you prefer
+    // try smooth scroll; fallback to instant
     try {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {
@@ -44,28 +45,29 @@ export const Header = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
       }`}
+      role="banner"
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo: use Bogart bold */}
+          {/* Logo: use brand-font (Tovar / Tovar replacement) */}
           <NavLink
             to="/"
-            className="text-2xl md:text-3xl font-bold text-chocolate font-bogart"
+            className="text-2xl md:text-3xl font-bold text-chocolate brand-font"
             aria-label="Beulah home"
           >
             Beulah
           </NavLink>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
-                className="text-sm font-medium text-foreground/80 hover:text-chocolate transition-colors relative group font-coco-normal tracking-widest"
+                className="text-sm font-medium text-foreground/80 hover:text-chocolate transition-colors relative group all-caps tracking-widest"
                 activeClassName="text-chocolate"
               >
-                {/* all-caps nav text uses Coco Gothic normal */}
+                {/* all-caps nav text uses LeanSans regular replacement */}
                 {link.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-chocolate transition-all duration-300 group-hover:w-full" />
               </NavLink>
@@ -88,6 +90,8 @@ export const Header = () => {
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-chocolate"
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -97,11 +101,13 @@ export const Header = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.nav
+              id="mobile-navigation"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.28 }}
               className="md:hidden overflow-hidden"
+              aria-label="Mobile navigation"
             >
               <div className="flex flex-col gap-4 pt-6 pb-4">
                 {links.map((link) => (
@@ -112,7 +118,7 @@ export const Header = () => {
                       setIsOpen(false);
                       // navigate handled by NavLink; scroll-to-top handled by location effect
                     }}
-                    className="text-base font-medium text-foreground/80 hover:text-chocolate transition-colors font-coco-normal tracking-widest"
+                    className="text-base font-medium text-foreground/80 hover:text-chocolate transition-colors all-caps tracking-widest"
                     activeClassName="text-chocolate"
                   >
                     {link.label}
@@ -126,7 +132,7 @@ export const Header = () => {
                   className="flex items-center gap-2 text-foreground/80 hover:text-chocolate transition-colors"
                 >
                   <ButtonInstagram />
-                  <span className="font-coco-normal">Instagram</span>
+                  <span className="all-caps">Instagram</span>
                 </a>
               </div>
             </motion.nav>

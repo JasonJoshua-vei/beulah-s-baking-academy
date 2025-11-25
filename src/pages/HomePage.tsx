@@ -149,9 +149,12 @@ const HomePage: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-chocolate/10 to-transparent" />
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.1 }} className="flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Discover desserts that speak the language of love.</h2>
-              <p className="text-lg text-muted-foreground mb-6 tracking-wide">SWEET TREATS, BAKED FRESH AT HOME.</p>
+            <motion.div initial={{ opacity: 0, x: 60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.1 }} className="flex flex-col justify-center text-center">
+              {/* section header uses Costaline (header font) */}
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 costaline-font">Discover desserts that speak the language of love.</h2>
+              {/* small lead uses Leansans bold */}
+              <p className="text-lg leansans-bold mb-6 tracking-wide all-caps">SWEET TREATS, BAKED FRESH AT HOME.</p>
+
               <motion.div whileHover={{ y: -3 }} transition={{ type: "spring", stiffness: 300 }}>
                 <UiButton variant="outline" className="border-2 border-chocolate text-chocolate hover:bg-chocolate hover:text-cream-50 rounded-none" onClick={() => navigate("/shop")}>Click here to shop</UiButton>
               </motion.div>
@@ -164,9 +167,9 @@ const HomePage: React.FC = () => {
       <section className="py-20 px-6 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-stretch">
-            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Skills That Last a Lifetime</h2>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">JOIN OUR ONLINE CERTIFIED COURSES ON BAKING AND MORE</p>
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="flex flex-col justify-center text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 costaline-font">Skills That Last a Lifetime</h2>
+              <p className="text-lg leansans-bold mb-8 leading-relaxed">JOIN OUR ONLINE CERTIFIED COURSES ON BAKING AND MORE</p>
               <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 280 }}>
                 <UiButton variant="cream" className="rounded-none" onClick={() => navigate("/courses")}>Learn More</UiButton>
               </motion.div>
@@ -184,8 +187,8 @@ const HomePage: React.FC = () => {
       <section className="py-20 px-6 bg-gradient-to-b from-cream-100 to-background relative take-a-bite-section">
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Take a bite!</h2>
-            <p className="text-muted-foreground">Handcrafted treats and class snippets from our students.</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 costaline-font">Take a bite!</h2>
+            <p className="text-muted-foreground leansans-regular">Handcrafted treats and class snippets from our students.</p>
           </motion.div>
 
           <div className="relative overflow-hidden">

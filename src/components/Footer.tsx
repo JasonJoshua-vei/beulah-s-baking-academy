@@ -7,8 +7,11 @@ import footerCake from "@/assets/footer-cake.png";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative overflow-hidden" style={{ backgroundColor: "var(--mocha)" }}>
-      {/* Color variables for exact palette */}
+    <footer
+      className="relative overflow-hidden"
+      style={{ backgroundColor: "var(--mocha)" }}
+    >
+      {/* Local styles */}
       <style>{`
         :root {
           --cream: #F2E6DC;
@@ -18,7 +21,6 @@ export const Footer: React.FC = () => {
         }
 
         .footer-heading {
-          font-family: 'Playfair Display', ui-serif, Georgia, 'Times New Roman', Times, serif;
           letter-spacing: 0.02em;
         }
 
@@ -31,15 +33,13 @@ export const Footer: React.FC = () => {
 
         .footer-link:hover { color: var(--cream); text-decoration: underline; }
 
-        /* Button Style (matches HomePage buttons) */
+        /* Button Style */
         .footer-button {
           border: 2px solid var(--choco);
           color: var(--choco);
           background: transparent;
-
           padding: 0.75rem 1.4rem;
           font-size: 1rem;
-
           border-radius: 0;
           transition: all 160ms ease;
         }
@@ -58,13 +58,12 @@ export const Footer: React.FC = () => {
         }
       `}</style>
 
-      {/* Wave shape */}
-      <div className="absolute inset-x-0 -top-1 pointer-events-none footer-wave" aria-hidden>
-        <svg
-          className="block w-full"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-        >
+      {/* Wave */}
+      <div
+        className="absolute inset-x-0 -top-1 pointer-events-none footer-wave"
+        aria-hidden
+      >
+        <svg className="block w-full" viewBox="0 0 1440 120">
           <path d="M0,60 C240,10 480,110 720,60 C960,10 1200,110 1440,60 L1440,120 L0,120 Z" />
         </svg>
       </div>
@@ -75,12 +74,12 @@ export const Footer: React.FC = () => {
           {/* Top Row */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
             <div className="text-center md:text-left">
-              <h2 className="footer-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 footer-subtle">
+              <h2 className="footer-heading costaline-font text-3xl md:text-4xl lg:text-5xl font-bold mb-4 footer-subtle">
                 We love to connect with you
               </h2>
 
               <div className="mt-2">
-                <UiButton asChild className="footer-button">
+                <UiButton asChild className="footer-button leansans-bold">
                   <a
                     href="https://forms.gle/EioB5iiSvTym3yeLA"
                     target="_blank"
@@ -93,7 +92,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* 🍰 Draggable Cake Image */}
+            {/* Draggable Cake */}
             <motion.div
               className="flex-shrink-0"
               drag
@@ -101,15 +100,8 @@ export const Footer: React.FC = () => {
               dragMomentum={false}
               whileHover={{ scale: 1.12 }}
               whileTap={{ scale: 1.05 }}
-              onDragEnd={(e, info) => {
-                // auto-return handled by animate reset
-              }}
               animate={{ x: 0, y: 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 220,
-                damping: 18,
-              }}
+              transition={{ type: "spring", stiffness: 220, damping: 18 }}
             >
               <img
                 src={footerCake}
@@ -122,13 +114,23 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Grid */}
-          <div className="footer-grid border-t" style={{ borderColor: "rgba(242,230,220,0.12)" }}>
+          <div
+            className="footer-grid border-t"
+            style={{ borderColor: "rgba(242,230,220,0.12)" }}
+          >
             {/* About */}
             <div className="pt-8">
-              <h3 className="text-lg font-semibold mb-4" style={{ color: "var(--cream)" }}>
+              <h3
+                className="text-lg font-semibold mb-4 brand-font"
+                style={{ color: "var(--cream)" }}
+              >
                 Beulah Skill Training Academy
               </h3>
-              <p className="text-sm footer-muted leading-relaxed" style={{ maxWidth: 320 }}>
+
+              <p
+                className="text-sm footer-muted leading-relaxed leansans-regular"
+                style={{ maxWidth: 320 }}
+              >
                 LEARN. BAKE. DELIGHT.
                 <br />
                 AFFORDABLE ONLINE CERTIFIED CLASSES ON BAKING AND MORE
@@ -139,10 +141,14 @@ export const Footer: React.FC = () => {
 
             {/* Contact */}
             <div className="pt-8">
-              <h3 className="text-lg font-semibold mb-4" style={{ color: "var(--cream)" }}>
+              <h3
+                className="text-lg font-semibold mb-4 leansans-bold"
+                style={{ color: "var(--cream)" }}
+              >
                 Contact
               </h3>
-              <div className="space-y-2">
+
+              <div className="space-y-2 leansans-regular">
                 <p className="text-sm footer-subtle">7502699771</p>
                 <p className="text-sm footer-subtle">beulah_james2024</p>
 
@@ -153,7 +159,10 @@ export const Footer: React.FC = () => {
                   className="flex items-center gap-2 mt-2 footer-link"
                   aria-label="Follow on Instagram"
                 >
-                  <Instagram className="w-5 h-5" style={{ color: "var(--cream)" }} />
+                  <Instagram
+                    className="w-5 h-5"
+                    style={{ color: "var(--cream)" }}
+                  />
                   <span className="text-sm footer-subtle">Follow us on Instagram</span>
                 </a>
               </div>
@@ -161,21 +170,39 @@ export const Footer: React.FC = () => {
 
             {/* Location */}
             <div className="pt-8">
-              <h3 className="text-lg font-semibold mb-4" style={{ color: "var(--cream)" }}>
+              <h3
+                className="text-lg font-semibold mb-4 leansans-bold"
+                style={{ color: "var(--cream)" }}
+              >
                 Location
               </h3>
-              <p className="text-sm footer-subtle">PUDUKKOTTAI, TAMILNADU</p>
+              <p className="text-sm footer-subtle leansans-regular">
+                PUDUKKOTTAI, TAMILNADU
+              </p>
             </div>
           </div>
 
-          {/* Bottom row */}
-          <div className="mt-10 pt-8 border-t" style={{ borderColor: "rgba(242,230,220,0.12)" }}>
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm footer-subtle">
+          {/* Bottom Row */}
+          <div
+            className="mt-10 pt-8 border-t"
+            style={{ borderColor: "rgba(242,230,220,0.12)" }}
+          >
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm footer-subtle leansans-regular">
               <p>© 2025 Beulah Skill Training Academy — All rights reserved</p>
+
               <div className="flex items-center gap-4">
-                <a href="#" className="footer-link text-sm">Privacy Policy</a>
-                <span className="text-cream" style={{ opacity: 0.35 }}>|</span>
-                <a href="#" className="footer-link text-sm">Terms of Service</a>
+                <a href="#" className="footer-link text-sm leansans-regular">
+                  Privacy Policy
+                </a>
+                <span
+                  className="text-cream"
+                  style={{ opacity: 0.35 }}
+                >
+                  |
+                </span>
+                <a href="#" className="footer-link text-sm leansans-regular">
+                  Terms of Service
+                </a>
               </div>
             </div>
           </div>

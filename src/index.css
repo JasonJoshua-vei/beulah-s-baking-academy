@@ -7,6 +7,41 @@ All colors MUST be HSL.
 */
 
 @layer base {
+  /* ---------- FONT LOADING (WOFF2) ---------- */
+  /* Files are expected at /public/fonts/woff2/<name>.woff2 */
+  @font-face {
+    font-family: "Tovar";
+    src: url("/fonts/woff2/Tovar.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Costaline";
+    src: url("/fonts/woff2/CostalineThin.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "LeanSans";
+    src: url("/fonts/woff2/LeonSans-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "LeanSans";
+    src: url("/fonts/woff2/LeonSans-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ---------- CSS Vars (colors etc) ---------- */
   :root {
     --background: 25 30% 95%;
     --foreground: 20 40% 12%;
@@ -37,7 +72,7 @@ All colors MUST be HSL.
     --ring: 20 45% 25%;
 
     --radius: 0.75rem;
-    
+
     --cream-50: 30 45% 96%;
     --cream-100: 30 40% 92%;
     --cream-300: 28 35% 82%;
@@ -107,14 +142,46 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  /* ---------- Global typography mapping ---------- */
+  /* Body (default text) -> LeanSans (regular) */
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: "LeanSans", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 400;
   }
 
+  /* Headings / site header text -> Costaline */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-    font-weight: 600;
+    font-family: "Costaline", "Cormorant Garamond", "Playfair Display", Georgia, serif;
+    font-weight: 400; /* CostalineThin is used; adjust weight if you have a different file */
+    text-align: center; /* per your request to centralize headings */
+  }
+
+  /* Brand word 'Beulah' — use Tovar bold */
+  .brand-font {
+    font-family: "Tovar", "Costaline", serif;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  /* Utilities for replacing the Coco Gothic usage (LeanSans used as substitute) */
+  /* All-CAPS (Coco Gothic regular replacement) */
+  .all-caps {
+    font-family: "LeanSans", Inter, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Normal text where you wanted 'Coco Gothic - bold' */
+  .text-strong {
+    font-family: "LeanSans", Inter, sans-serif;
+    font-weight: 700;
+  }
+
+  /* Ensure centered body-aligned text where intended (you requested center alignment in places) */
+  .center-text {
+    text-align: center;
   }
 }
 
@@ -122,15 +189,15 @@ All colors MUST be HSL.
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }
-  
+
   .animate-slide-up {
     animation: slideUp 0.8s ease-out forwards;
   }
-  
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -141,7 +208,7 @@ All colors MUST be HSL.
       transform: translateY(0);
     }
   }
-  
+
   @keyframes slideUp {
     from {
       opacity: 0;

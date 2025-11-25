@@ -1,3 +1,4 @@
+// src/components/Hero.tsx
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useTransform, useAnimation } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,15 @@ import heroCupcake from "@/assets/hero-cupcake.png";
  * - brownies: draggable with snap-back (spring) onRelease
  * - cupcakes: click to spawn multiple flying cupcake clones ("fountain")
  * - sparkles: larger, multiple per spawn point, float idle, flee when cursor is near
+ *
+ * Font utilities used:
+ *  - brand-font         -> Tovar (used for the 'Beulah' word)
+ *  - costaline-font     -> Costaline (header-style if desired)
+ *  - leansans-bold      -> Leansans-Bold for emphasized headings / button text
+ *  - leansans-regular   -> Leansans-Regular for body text
+ *  - all-caps           -> uppercase small-caps style for labels (if used)
+ *
+ * Note: ensure your index.css contains @font-face and utilities for these classes.
  */
 
 type FlyingCupcake = {
@@ -325,27 +335,37 @@ export const Hero: React.FC = () => {
                   initial={{ opacity: 0, y: 25 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.15 * i, ease: "easeOut" }}
-                  className={`inline-block mr-2 ${word === "Beulah" || word === "Academy" ? "text-chocolate" : ""}`}
+                  className={`inline-block mr-2 ${
+                    // 'Beulah' gets the brand font, 'Academy' also emphasized
+                    word === "Beulah" || word === "Academy"
+                      ? "brand-font text-chocolate"
+                      : "leansans-bold"
+                  }`}
                 >
                   {word}
                 </motion.span>
               ))}
             </motion.h1>
 
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1 }} className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto md:mx-0">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto md:mx-0 leansans-regular"
+            >
               Your one-stop destination for desserts and skill-building courses.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.2 }} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="bg-chocolate hover:bg-chocolate-dark text-cream-50 text-lg px-8 py-6 shadow-xl" onClick={() => window.open("https://forms.gle/L7r2nXz9SfwBDi9x9", "_blank")}>
+                <Button size="lg" className="bg-chocolate hover:bg-chocolate-dark text-cream-50 text-lg px-8 py-6 shadow-xl leansans-bold" onClick={() => window.open("https://forms.gle/L7r2nXz9SfwBDi9x9", "_blank")}>
                   Book Now
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" variant="outline" className="border-2 border-chocolate text-chocolate hover:bg-chocolate hover:text-cream-50 text-lg px-8 py-6" onClick={() => navigate("/shop")}>
+                <Button size="lg" variant="outline" className="border-2 border-chocolate text-chocolate hover:bg-chocolate hover:text-cream-50 text-lg px-8 py-6 leansans-bold" onClick={() => navigate("/shop")}>
                   Click here to shop
                 </Button>
               </motion.div>
